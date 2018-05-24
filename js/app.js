@@ -1,3 +1,10 @@
+// Canvas
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d", { alpha: false });
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0,0,500,100);
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
