@@ -1,9 +1,10 @@
-// Canvas
+// Canvas background
 
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d", { alpha: false });
-ctx.fillStyle = "#FF0000";
-ctx.fillRect(0,0,500,100);
+imageObj.onload = function() {
+    context.drawImage(imageObj, 69, 50);
+  };
+
+  imageObj.src = '../images/grass-block.png';
 
 // Enemies our player must avoid
 var Enemy = function() {

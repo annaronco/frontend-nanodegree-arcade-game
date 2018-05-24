@@ -2,10 +2,7 @@ body {
     text-align: center;
 }
 
-.game {
-    align-self: center;
-}
-
 #canvas {
-    background-color: #ccc;
+    border: 1px solid #ccc;
+    background: #eee;
 }
