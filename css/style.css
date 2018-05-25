@@ -3,6 +3,5 @@ body {
 }
 
 #canvas {
-    border: 1px solid #ccc;
-    background: #eee;
+    border: 3px solid #ccc;
 }
