@@ -88,6 +88,30 @@ var allEnemies = [
 // Place the player object in a variable called player
 var player = new Player();
 
+// Place a Gem every 10 score points
+var Gem = function (x, y) {
+    this.x = 202;
+    this.y = 144;
+    this.sprite = 'images/gem-blue.png';
+}
+
+Gem.prototype.render = function() {
+    if (score !== 0) {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+};
+
+Gem.prototype.update = function() {
+    if (this.x < player.x + 30 && this.x + 60 > player.x && this.y < player.y + 60 && this.y + 40 > player.y) {
+        score ++;
+        updateScore(score);
+        this.x = -100;
+        this.y = -100;
+    }
+}
+
+var gem = new Gem();
+
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
