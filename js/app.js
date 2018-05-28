@@ -23,7 +23,7 @@ Enemy.prototype.update = function(dt) {
     }
     if (this.x < player.x + 30 && this.x + 60 > player.x && this.y < player.y + 60 && this.y + 40 > player.y) {
         score = 0;
-        document.getElementsByClassName('score').innerHtml = score;
+        updateScore(score);
         player.x = 200;
         player.y = 400;
     }
@@ -71,7 +71,7 @@ Player.prototype.handleInput = function(direction, x, y) {
 Player.prototype.update = function() {
     if (player.y < 10) {
         score += 1;
-        document.getElementsByClassName('score').innerHtml = score;
+        updateScore(score);
         player.x = 200;
         player.y = 400;
     }
@@ -103,3 +103,7 @@ document.addEventListener('keyup', function(e) {
 
 // Player score
 let score = 0;
+
+var updateScore = function(score) {
+    document.getElementsByClassName('score')[0].innerHTML = score;
+}
