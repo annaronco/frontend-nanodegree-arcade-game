@@ -93,6 +93,8 @@ var Gem = function (x, y) {
     this.x = 202;
     this.y = 144;
     this.sprite = 'images/gem-blue.png';
+    this.xPositions = [144, 22 , 245, 364];
+    this.yPositions = [62, 143, 298, 376, 410];
 }
 
 Gem.prototype.render = function() {
@@ -108,11 +110,9 @@ Gem.prototype.update = function() {
         this.x = -100;
         this.y = -100;
     }
-    var xPositions = [144, 22 , 245, 364];
-    var yPositions = [62, 143, 298, 376, 410];
     if (score % 5 === 0) {
-        this.x = xPositions[Math.floor(Math.random()*xPositions.length)];
-        this.y = yPositions[Math.floor(Math.random()*yPositions.length)];
+        this.x = this.xPositions[Math.floor(Math.random()*this.xPositions.length)];
+        this.y = this.yPositions[Math.floor(Math.random()*this.yPositions.length)];
     }
 }
 
