@@ -21,6 +21,12 @@ Enemy.prototype.update = function(dt) {
     } else {
         this.x = this.random(500);
     }
+    if (this.x < player.x + 30 && this.x + 60 > player.x && this.y < player.y + 60 && this.y + 40 > player.y) {
+        score = 0;
+        document.getElementsByClassName('score').innerHtml = score;
+        player.x = 200;
+        player.y = 400;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -49,23 +55,23 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(direction, x, y) {
     if (direction === 'left' && this.x > 0) {
-        this.x -= 80;
+        this.x -= 101;
     }
     if (direction === 'up' && this.y > 0) {
-        this.y -=80;
+        this.y -=84;
     }
-    if (direction === 'right' && this.x < 500) {
-        this.x += 80;
+    if (direction === 'right' && this.x < 400) {
+        this.x += 101;
     }
     if (direction === 'down' && this.y < 500) {
-        this.y += 80;
+        this.y += 84;
     }
 }
 
 Player.prototype.update = function() {
     if (player.y < 10) {
         score += 1;
-        document.getElementsByClassName('score').innerHTML = score;
+        document.getElementsByClassName('score').innerHtml = score;
         player.x = 200;
         player.y = 400;
     }
@@ -74,9 +80,9 @@ Player.prototype.update = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [
-    enemyOne = new Enemy(1, 0, 100),
-    enemyTwo = new Enemy(2, 0, 150),
-    enemyThree = new Enemy(3, 0, 200)
+    enemyOne = new Enemy(1, 0, 60),
+    enemyTwo = new Enemy(1, 0, 144),
+    enemyThree = new Enemy(1, 0, 228)
 ]
 
 // Place the player object in a variable called player
