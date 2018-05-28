@@ -96,7 +96,7 @@ var Gem = function (x, y) {
 }
 
 Gem.prototype.render = function() {
-    if (score !== 0) {
+    if (score % 5 === 0 && score != 0) {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 };
@@ -107,6 +107,12 @@ Gem.prototype.update = function() {
         updateScore(score);
         this.x = -100;
         this.y = -100;
+    }
+    var xPositions = [144, 22 , 245, 364];
+    var yPositions = [62, 143, 298, 376, 410];
+    if (score % 5 === 0) {
+        this.x = xPositions[Math.floor(Math.random()*xPositions.length)];
+        this.y = yPositions[Math.floor(Math.random()*yPositions.length)];
     }
 }
 
