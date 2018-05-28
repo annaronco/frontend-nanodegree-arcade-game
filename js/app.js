@@ -5,7 +5,7 @@ var Enemy = function(speed, x, y) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.speed = speed;
-    this.x = x;
+    this.x = this.random(200);
     this.y = y;
     this.sprite = 'images/enemy-bug.png';
 };
@@ -17,7 +17,9 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     if (this.x < 505) {
-        this.x += (50 * dt);
+        this.x += (100 * dt);
+    } else {
+        this.x = this.random(500);
     }
 };
 
@@ -25,6 +27,11 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+Enemy.prototype.random = function(max) {
+    return -Math.floor(Math.random()*Math.floor(max));
+}
+
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -41,17 +48,17 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(direction, x, y) {
-    if (direction === 'left' && x > 0) {
-        this.x -= 50;
+    if (direction === 'left' && this.x > 0) {
+        this.x -= 80;
     }
-    if (direction === 'up' && y > 0) {
-        this.y -=50;
+    if (direction === 'up' && this.y > 0) {
+        this.y -=80;
     }
-    if (direction === 'right' && x < 500) {
-        this.x += 50;
+    if (direction === 'right' && this.x < 500) {
+        this.x += 80;
     }
-    if (direction === 'down' && y < 500) {
-        this.y += 50;
+    if (direction === 'down' && this.y < 500) {
+        this.y += 80;
     }
 }
 
@@ -87,3 +94,6 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+// Player score
+let score = 0;
