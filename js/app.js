@@ -141,5 +141,3 @@ var updateScore = {
         document.getElementsByClassName('score')[0].innerHTML = score;
     }
 }
-
-//TODO: fix collision positions
