@@ -22,8 +22,7 @@ Enemy.prototype.update = function(dt) {
         this.x = this.random(500);
     }
     if (this.x < player.x + 30 && this.x + 60 > player.x && this.y < player.y + 60 && this.y + 40 > player.y) {
-        score = 0;
-        updateScore(score);
+        updateScore.resetScore();
         player.x = 200;
         player.y = 400;
     }
@@ -37,7 +36,6 @@ Enemy.prototype.render = function() {
 Enemy.prototype.random = function(max) {
     return -Math.floor(Math.random()*Math.floor(max));
 }
-
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -70,8 +68,7 @@ Player.prototype.handleInput = function(direction, x, y) {
 
 Player.prototype.update = function() {
     if (player.y < 10) {
-        score += 1;
-        updateScore(score);
+        updateScore.addScore();
         player.x = 200;
         player.y = 400;
     }
@@ -105,8 +102,7 @@ Gem.prototype.render = function() {
 
 Gem.prototype.update = function() {
     if (this.x < player.x + 30 && this.x + 60 > player.x && this.y < player.y + 60 && this.y + 40 > player.y) {
-        score ++;
-        updateScore(score);
+        updateScore.addScore();
         this.x = -100;
         this.y = -100;
     }
@@ -132,8 +128,14 @@ document.addEventListener('keyup', function(e) {
 });
 
 // Player score
-let score = 0;
-
-var updateScore = function(score) {
-    document.getElementsByClassName('score')[0].innerHTML = score;
+var score = 0;
+var updateScore = {
+    addScore: function() {
+        score++
+        document.getElementsByClassName('score')[0].innerHTML = score;
+    },
+    resetScore: function() {
+        score = 0;
+        document.getElementsByClassName('score')[0].innerHTML = score;
+    }
 }
