@@ -4,7 +4,8 @@ var Enemy = function(speed, x, y) {
     // we've provided one for you to get started
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.speed = speed;
+    var speeds = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500];
+    this.speed = speeds[Math.floor(Math.random()*speeds.length)]
     this.x = this.random(200);
     this.y = y;
     this.sprite = 'images/enemy-bug.png';
@@ -17,7 +18,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     if (this.x < 505) {
-        this.x += (100 * dt);
+        this.x += (this.speed * dt);
     } else {
         this.x = this.random(500);
     }
@@ -61,7 +62,7 @@ Player.prototype.handleInput = function(direction, x, y) {
     if (direction === 'right' && this.x < 400) {
         this.x += 101;
     }
-    if (direction === 'down' && this.y < 500) {
+    if (direction === 'down' && this.y < 400) {
         this.y += 84;
     }
 }
@@ -77,9 +78,9 @@ Player.prototype.update = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [
-    enemyOne = new Enemy(1, 0, 60),
-    enemyTwo = new Enemy(1, 0, 144),
-    enemyThree = new Enemy(1, 0, 228)
+    enemyOne = new Enemy(100, 0, 60),
+    enemyTwo = new Enemy(200, 0, 144),
+    enemyThree = new Enemy(300, 0, 228)
 ]
 
 // Place the player object in a variable called player
@@ -141,6 +142,4 @@ var updateScore = {
     }
 }
 
-//TODO: fix score 1
-//TODO: block player going outside of the screen
 //TODO: fix collision positions
