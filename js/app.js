@@ -106,7 +106,7 @@ Gem.prototype.update = function() {
         this.x = -100;
         this.y = -100;
     }
-    if (score % 5 === 0) {
+    if (score % 5 === 0 && this.x === -100) {
         this.x = this.xPositions[Math.floor(Math.random()*this.xPositions.length)];
         this.y = this.yPositions[Math.floor(Math.random()*this.yPositions.length)];
     }
@@ -129,6 +129,7 @@ document.addEventListener('keyup', function(e) {
 
 // Player score
 var score = 0;
+
 var updateScore = {
     addScore: function() {
         score++
@@ -139,3 +140,7 @@ var updateScore = {
         document.getElementsByClassName('score')[0].innerHTML = score;
     }
 }
+
+//TODO: fix score 1
+//TODO: block player going outside of the screen
+//TODO: fix collision positions
